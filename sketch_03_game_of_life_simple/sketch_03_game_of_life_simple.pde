@@ -5,8 +5,6 @@ int B[][];
 //initial state
 void setup() { //<>//
   size(500, 500);
-  background(255);
-  noStroke();
   //initialize A and B
   A = new int[width][height];
   B = new int[width][height];
@@ -38,13 +36,14 @@ void draw() {
       }
     }
   }
+  loadPixels();
   for (int i = 0; i < width; i++) {
     for (int j = 0; j < height; j++) {
       //fill A with B values
       A[i][j] = B[i][j];
       //draw cell
-      fill(A[i][j] * 255);
-      rect(i * 2, j * 2, 2, 2);
+      pixels[i + j * width] = color(A[i][j] * 255);
     }
   }
+  updatePixels();
 }
